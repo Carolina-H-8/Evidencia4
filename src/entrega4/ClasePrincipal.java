@@ -16,3 +16,6 @@ public class ClasePrincipal {
         this.animales = new ArrayList<>();
         
     }
+ public void agregarAnimales(){
+        Scanner sc = new Scanner(System.in);
+        String opcion;
