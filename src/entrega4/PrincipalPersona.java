@@ -2,6 +2,7 @@ package entrega4;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.Scanner;
 
 public class PrincipalPersona {
@@ -71,6 +72,37 @@ public class PrincipalPersona {
         } while (!nombrePersona.equalsIgnoreCase("fin"));
 
         scanner.close();
+
+        long cantidadPersonas = personas.stream().count();
+        System.out.println("\na. Cantidad de personas almacenadas: " + cantidadPersonas);
+
+        
+        OptionalDouble promedioEdades = personas.stream()
+                .mapToInt(Persona::getEdad) 
+                .average();
+        System.out.print("b. Promedio de edades: ");
+        promedioEdades.ifPresentOrElse(
+                avg -> System.out.printf("%.2f%n", avg),
+                () -> System.out.println("No hay personas para calcular el promedio.")
+        );
+
+        
+        long mayoresDeEdad = personas.stream()
+                .filter(p -> p.getEdad() >= 18)
+                .count();
+        System.out.println("c. Cantidad de personas mayores de edad: " + mayoresDeEdad);
+
+        
+        System.out.println("d. Personas cuyos nombres empiezan con 'A':");
+        personas.stream()
+                .filter(p -> p.getNombre().startsWith("A") || p.getNombre().startsWith("a")) 
+                .forEach(p -> System.out.println("   - " + p.getNombre() + " " + p.getApellido()));
+
+        
+        System.out.println("e. Personas cuyos apellidos contienen la letra 'M':");
+        personas.stream()
+                .filter(p -> p.getApellido().toLowerCase().contains("m")) 
+                .forEach(p -> System.out.println("   - " + p.getNombre() + " " + p.getApellido()));
 
     }
 }
