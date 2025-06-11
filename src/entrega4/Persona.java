@@ -70,7 +70,7 @@ public class Persona {
     @Override
     public String toString() {
         return "Nombre: " + nombre + " " + apellido + ", Edad: " + edad + ", "
-                + "Género: " + genero + ", Cargo: " + cargo + ", Sueldo/Hora: $" + sueldoHora;
+                + "Genero: " + genero + ", Cargo: " + cargo + ", Sueldo por Hora: $" + sueldoHora;
     }
 
 }
